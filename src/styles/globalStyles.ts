@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 140%;
   }
   body {
+    background-color: ${(props) => props.theme.colors.gray600};
   }
 `;
 
