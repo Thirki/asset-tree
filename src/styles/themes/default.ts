@@ -5,6 +5,7 @@ export const defaultTheme = {
     gray950: "#24292F",
     blue500: "#2188FF",
     blue900: "#023B78",
+    blue950: "#17192D",
     border: "#D8DFE6",
     disabled: "#C1C9D2",
     danger: "#ED3833",
@@ -19,6 +20,7 @@ export const defaultTheme = {
     xxl: "24px",
   },
   space: {
+    xxs: "4px",
     xs: "8px",
     sm: "12px",
     md: "16px",
