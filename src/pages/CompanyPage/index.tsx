@@ -39,7 +39,7 @@ export const CompanyPage = () => {
       return;
     }
     setFilters((prevState) => {
-      const hasCriticalFilter = prevState.includes("energy");
+      const hasCriticalFilter = prevState.includes("critical");
       return hasCriticalFilter ? prevState : [...prevState, "critical"];
     });
   }, [filters, setFilters]);
