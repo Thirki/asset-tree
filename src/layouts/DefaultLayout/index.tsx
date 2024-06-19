@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../../components";
+import { PageWrapper } from "./style";
 
 export const DefaultLayout = () => {
   return (
-    <div>
+    <PageWrapper>
       <Header />
       <Outlet />
-    </div>
+    </PageWrapper>
   );
 };

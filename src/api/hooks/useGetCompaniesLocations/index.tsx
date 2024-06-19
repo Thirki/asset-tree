@@ -4,7 +4,7 @@ import { axiosInstance } from "../../axiosConfig";
 export interface ILocation {
   id: string;
   name: string;
-  parentId: string | null;
+  parentId?: string;
 }
 
 export const getCompanyLocationsKey = (companyId: string) =>

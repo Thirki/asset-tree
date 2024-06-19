@@ -7,6 +7,8 @@ interface IMyContextProviderProps {
   children: React.ReactNode;
 }
 
+export type IFilters = "energy" | "critical";
+
 export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
   children,
 }) => {
@@ -14,6 +16,7 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
   const [companies, setCompanies] = useState<ICompany[]>([]);
   const [locations, setLocations] = useState<ILocation[]>([]);
   const [assets, setAssets] = useState<IAsset[]>([]);
+  const [filters, setFilters] = useState<IFilters[]>([]);
 
   const navigate = useNavigate();
 
@@ -34,12 +37,14 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
       companies,
       locations,
       assets,
+      filters,
       setSelectedCompany,
       setCompanies,
       setLocations,
       setAssets,
+      setFilters,
     }),
-    [assets, companies, locations, selectedCompany]
+    [assets, companies, filters, locations, selectedCompany]
   );
 
   return (
