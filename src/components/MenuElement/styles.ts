@@ -22,7 +22,7 @@ export const ElementLink = styled.a<IElementLinkProps>`
   background-color: ${(props) =>
     props.selected ? props.theme.colors.blue500 : props.theme.colors.blue900};
 
-  img {
+  svg {
     margin-right: ${(props) => props.theme.space.xxs};
   }
 `;

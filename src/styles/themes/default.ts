@@ -1,12 +1,13 @@
 export const defaultTheme = {
   colors: {
     white: "#ffffff",
-    gray600: "#E3EAEF",
+    gray150: "#E3EAEF",
+    gray200: "#D8DFE6",
+    gray600: "#77818C",
     gray950: "#24292F",
     blue500: "#2188FF",
     blue900: "#023B78",
     blue950: "#17192D",
-    border: "#D8DFE6",
     disabled: "#C1C9D2",
     danger: "#ED3833",
     success: "#52C41A",

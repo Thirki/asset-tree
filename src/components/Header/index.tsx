@@ -8,13 +8,14 @@ import { useTheme } from "styled-components";
 import { MenuElement } from "../MenuElement";
 import { HeaderWrapper, MenuWrapper } from "./styles";
 import { LoadingSkeleton } from "../LoadingSkeleton";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useCompanyContext } from "../../context/hooks";
 
 export const Header = () => {
   const { colors } = useTheme();
   const { data, isFetching } = useGetCompanies();
   const { id } = useParams();
-  const navigate = useNavigate();
+  const { setSelectedCompany } = useCompanyContext();
 
   const renderSkeleton = () => {
     return (
@@ -28,9 +29,9 @@ export const Header = () => {
 
   useEffect(() => {
     if (data?.length && !id) {
-      navigate(`/company/${data[0].id}`);
+      setSelectedCompany(data[0]);
     }
-  }, [navigate, data, id]);
+  }, [data, id, setSelectedCompany]);
 
   return (
     <HeaderWrapper>

@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: inter, sans-serif;
   }
   body {
-    background-color: ${(props) => props.theme.colors.gray600};
+    background-color: ${(props) => props.theme.colors.gray150};
   }
 `;
 

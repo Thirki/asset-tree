@@ -1,8 +1,9 @@
 import React from "react";
-import tree from "../../assets/tree.svg";
 import { ElementLink } from "./styles";
 import { ICompany } from "../../api/hooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { TreeIcon } from "../../icons";
+import { useCompanyContext } from "../../context/hooks";
 
 interface IMenuElementProps {
   company: ICompany;
@@ -10,19 +11,19 @@ interface IMenuElementProps {
 
 export const MenuElement: React.FC<IMenuElementProps> = ({ company }) => {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const { setSelectedCompany } = useCompanyContext();
 
   const handleClickLink = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     event.preventDefault();
-    navigate(`/company/${company.id}`);
+    setSelectedCompany(company);
   };
 
   return (
     <li>
       <ElementLink onClick={handleClickLink} selected={id === company.id}>
-        <img src={tree} />
+        <TreeIcon />
         {company.name} Unit
       </ElementLink>
     </li>
