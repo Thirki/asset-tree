@@ -15,7 +15,7 @@ export const Header = () => {
   const { colors } = useTheme();
   const { data, isFetching } = useGetCompanies();
   const { id } = useParams();
-  const { setSelectedCompany } = useCompanyContext();
+  const { setSelectedCompany, setIsLoading } = useCompanyContext();
 
   const renderSkeleton = () => {
     return (
@@ -32,6 +32,10 @@ export const Header = () => {
       setSelectedCompany(data[0]);
     }
   }, [data, id, setSelectedCompany]);
+
+  useEffect(() => {
+    setIsLoading(isFetching);
+  }, [isFetching, setIsLoading]);
 
   return (
     <HeaderWrapper>

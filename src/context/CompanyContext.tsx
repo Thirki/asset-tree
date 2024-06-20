@@ -8,6 +8,8 @@ interface ICompanyContextType {
   locations: ILocation[];
   assets: IAsset[];
   filters?: IFilters[];
+  selectedComponent?: IAsset;
+  isLoading?: boolean;
   setSelectedCompany: (company: ICompany) => void;
   setCompanies: (companies: ICompany[]) => void;
   setLocations: (locations: ILocation[]) => void;
@@ -15,6 +17,8 @@ interface ICompanyContextType {
   setFilters: (
     filters: IFilters[] | ((prevFilters: IFilters[]) => IFilters[])
   ) => void;
+  setSelectedComponent: (assets: IAsset) => void;
+  setIsLoading: (isLoading: boolean) => void;
 }
 
 export const CompanyContext = createContext<ICompanyContextType>({
@@ -22,9 +26,12 @@ export const CompanyContext = createContext<ICompanyContextType>({
   locations: [],
   assets: [],
   filters: [],
+  isLoading: false,
   setSelectedCompany: () => {},
   setCompanies: () => {},
   setLocations: () => {},
   setAssets: () => {},
   setFilters: () => {},
+  setSelectedComponent: () => {},
+  setIsLoading: () => {},
 });

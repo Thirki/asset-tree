@@ -1,9 +1,13 @@
 import { Container } from "./styles";
+import { ItemContent, ItemFooter } from "./components";
+import { Header } from "./components/Header";
 
 export const ItemScreen = () => {
   return (
     <Container>
-      <h1>Hello from ItemScreen</h1>
+      <Header />
+      <ItemContent />
+      <ItemFooter />
     </Container>
   );
 };

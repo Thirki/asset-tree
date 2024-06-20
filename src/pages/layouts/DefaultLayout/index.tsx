@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "../../components";
-import { PageWrapper } from "./style";
+import { PageWrapper } from "./styles";
+import { Header } from "../../../components";
 
 export const DefaultLayout = () => {
   return (

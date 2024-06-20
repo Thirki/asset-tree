@@ -17,6 +17,8 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
   const [locations, setLocations] = useState<ILocation[]>([]);
   const [assets, setAssets] = useState<IAsset[]>([]);
   const [filters, setFilters] = useState<IFilters[]>([]);
+  const [selectedComponent, setSelectedComponent] = useState<IAsset>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -38,13 +40,25 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
       locations,
       assets,
       filters,
+      selectedComponent,
+      isLoading,
       setSelectedCompany,
       setCompanies,
       setLocations,
       setAssets,
       setFilters,
+      setSelectedComponent,
+      setIsLoading,
     }),
-    [assets, companies, filters, locations, selectedCompany]
+    [
+      assets,
+      companies,
+      filters,
+      isLoading,
+      locations,
+      selectedCompany,
+      selectedComponent,
+    ]
   );
 
   return (

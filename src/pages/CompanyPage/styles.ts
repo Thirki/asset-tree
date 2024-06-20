@@ -70,5 +70,7 @@ export const ContentWrapper = styled.section`
   height: 100%;
   gap: ${(props) => props.theme.space.xs};
 
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 37% 63%;
 `;
