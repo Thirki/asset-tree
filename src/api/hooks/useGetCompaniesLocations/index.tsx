@@ -10,10 +10,7 @@ export interface ILocation {
 export const getCompanyLocationsKey = (companyId: string) =>
   `useGetCompaniesLocations-${companyId}`;
 
-export const useGetCompaniesLocations = (
-  companyId: string,
-  enabled = false
-) => {
+export const useGetCompaniesLocations = (companyId = "", enabled = false) => {
   const fetchCompaniesLocations = async (): Promise<ILocation[]> => {
     const response = await axiosInstance.get(
       `/companies/${companyId}/locations`

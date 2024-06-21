@@ -15,7 +15,7 @@ export interface IAsset {
 export const getCompanyAssetsKey = (companyId: string) =>
   `useGetCompaniesAssets-${companyId}`;
 
-export const useGetCompaniesAssets = (companyId: string, enabled = false) => {
+export const useGetCompaniesAssets = (companyId = "", enabled = false) => {
   const fetchCompaniesAssets = async (): Promise<IAsset[]> => {
     const response = await axiosInstance.get(`/companies/${companyId}/assets`);
     return response.data;

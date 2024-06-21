@@ -1,21 +1,15 @@
-import { useEffect } from "react";
-
 import logo from "../../assets/tractian.svg";
 
-import { useGetCompanies } from "../../api/hooks";
 import { useTheme } from "styled-components";
 
 import { MenuElement } from "../MenuElement";
 import { HeaderWrapper, MenuWrapper } from "./styles";
 import { LoadingSkeleton } from "../LoadingSkeleton";
-import { useParams } from "react-router-dom";
 import { useCompanyContext } from "../../context/hooks";
 
 export const Header = () => {
   const { colors } = useTheme();
-  const { data, isFetching } = useGetCompanies();
-  const { id } = useParams();
-  const { setSelectedCompany, setIsLoading } = useCompanyContext();
+  const { companies, isLoading } = useCompanyContext();
 
   const renderSkeleton = () => {
     return (
@@ -27,30 +21,18 @@ export const Header = () => {
     );
   };
 
-  useEffect(() => {
-    if (data?.length && !id) {
-      setSelectedCompany(data[0]);
-    }
-  }, [data, id, setSelectedCompany]);
-
-  useEffect(() => {
-    setIsLoading(isFetching);
-  }, [isFetching, setIsLoading]);
+  if (isLoading) {
+    return renderSkeleton();
+  }
 
   return (
     <HeaderWrapper>
       <img src={logo} />
       <nav>
         <MenuWrapper>
-          {!isFetching ? (
-            <>
-              {data?.map((company) => (
-                <MenuElement company={company} key={company.id} />
-              ))}
-            </>
-          ) : (
-            renderSkeleton()
-          )}
+          {companies?.map((company) => (
+            <MenuElement company={company} key={company.id} />
+          ))}
         </MenuWrapper>
       </nav>
     </HeaderWrapper>

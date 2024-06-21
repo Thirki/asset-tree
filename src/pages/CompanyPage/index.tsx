@@ -15,7 +15,7 @@ import {
 import { useTheme } from "styled-components";
 
 export const CompanyPage = () => {
-  const { filters, setFilters } = useCompanyContext();
+  const { filters, setFilters, selectedCompany } = useCompanyContext();
   const theme = useTheme();
 
   const handleSelectEnergyFilter = useCallback(() => {
@@ -49,7 +49,7 @@ export const CompanyPage = () => {
       <Main>
         <Header>
           <Title>
-            Ativos<span> / Apex Unit</span>
+            Ativos <span>{`/ ${selectedCompany?.name || "loading"} Unit`}</span>
           </Title>
           <ButtonContainer>
             <Button
