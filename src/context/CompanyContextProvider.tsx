@@ -9,6 +9,7 @@ import {
   useGetCompaniesLocations,
 } from "../api/hooks";
 import { useNavigate, useParams } from "react-router-dom";
+import { ITreeComponents } from "../hooks";
 
 interface IMyContextProviderProps {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
   const [selectedComponent, setSelectedComponent] = useState<IAsset>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [enableCompaniesQuery, setEnableCompaniesQuery] = useState(false);
+  const [treeComponents, setTreeComponents] = useState<ITreeComponents[]>([]);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -77,11 +79,8 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
 
   useEffect(() => {
     if (companiesLocationsData?.length && companiesAssetsData?.length) {
-      console.log(
-        "🚀 ~ useEffect ~ companiesLocationsData:",
-        companiesLocationsData
-      );
-      console.log("🚀 ~ useEffect ~ companiesAssetsData:", companiesAssetsData);
+      setLocations(companiesLocationsData);
+      setAssets(companiesAssetsData);
     }
   }, [companiesAssetsData, companiesLocationsData]);
 
@@ -94,6 +93,7 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
       filters,
       selectedComponent,
       isLoading,
+      treeComponents,
       setSelectedCompany,
       setCompanies,
       setLocations,
@@ -101,6 +101,7 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
       setFilters,
       setSelectedComponent,
       setIsLoading,
+      setTreeComponents,
     }),
     [
       assets,
@@ -110,6 +111,7 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
       locations,
       selectedCompany,
       selectedComponent,
+      treeComponents,
     ]
   );
 

@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { IAsset, ICompany, ILocation } from "../api/hooks";
 import { IFilters } from "./CompanyContextProvider";
+import { ITreeComponents } from "../hooks";
 
 interface ICompanyContextType {
   selectedCompany?: ICompany;
@@ -10,6 +11,7 @@ interface ICompanyContextType {
   filters?: IFilters[];
   selectedComponent?: IAsset;
   isLoading?: boolean;
+  treeComponents?: ITreeComponents[];
   setSelectedCompany: (company: ICompany) => void;
   setCompanies: (companies: ICompany[]) => void;
   setLocations: (locations: ILocation[]) => void;
@@ -17,8 +19,9 @@ interface ICompanyContextType {
   setFilters: (
     filters: IFilters[] | ((prevFilters: IFilters[]) => IFilters[])
   ) => void;
-  setSelectedComponent: (assets: IAsset) => void;
+  setSelectedComponent: (assets?: IAsset) => void;
   setIsLoading: (isLoading: boolean) => void;
+  setTreeComponents: (treeComponents: ITreeComponents[]) => void;
 }
 
 export const CompanyContext = createContext<ICompanyContextType>({
@@ -27,6 +30,7 @@ export const CompanyContext = createContext<ICompanyContextType>({
   assets: [],
   filters: [],
   isLoading: false,
+  treeComponents: [],
   setSelectedCompany: () => {},
   setCompanies: () => {},
   setLocations: () => {},
@@ -34,4 +38,5 @@ export const CompanyContext = createContext<ICompanyContextType>({
   setFilters: () => {},
   setSelectedComponent: () => {},
   setIsLoading: () => {},
+  setTreeComponents: () => {},
 });

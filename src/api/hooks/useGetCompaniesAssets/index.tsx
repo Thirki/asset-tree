@@ -3,9 +3,9 @@ import { axiosInstance } from "../../axiosConfig";
 
 export interface IAsset {
   id: string;
-  locationId: string | null;
+  locationId?: string | null;
   name: string;
-  parentId: string | null;
+  parentId?: string | null;
   gatewayId?: string;
   sensorId?: string;
   sensorType?: string;
