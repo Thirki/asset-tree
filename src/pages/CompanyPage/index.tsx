@@ -57,7 +57,11 @@ export const CompanyPage = () => {
               $isselected={!!filters?.includes("energy")}
             >
               <EnergyIcon
-                color={filters?.includes("energy") ? theme.colors.white : ""}
+                customColor={
+                  filters?.includes("energy")
+                    ? theme.colors.white
+                    : theme.colors.blue500
+                }
               />
               Sensor de Energia
             </Button>
