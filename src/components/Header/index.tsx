@@ -1,7 +1,5 @@
 import logo from "../../assets/tractian.svg";
-
 import { useTheme } from "styled-components";
-
 import { MenuElement } from "../MenuElement";
 import { HeaderWrapper, MenuWrapper } from "./styles";
 import { LoadingSkeleton } from "../LoadingSkeleton";
@@ -11,28 +9,27 @@ export const Header = () => {
   const { colors } = useTheme();
   const { companies, isLoading } = useCompanyContext();
 
-  const renderSkeleton = () => {
-    return (
-      <>
-        <LoadingSkeleton height="20px" width="90px" $color={colors.blue500} />
-        <LoadingSkeleton height="20px" width="90px" $color={colors.blue900} />
-        <LoadingSkeleton height="20px" width="90px" $color={colors.blue900} />
-      </>
-    );
-  };
+  const renderSkeleton = () => (
+    <>
+      <LoadingSkeleton height="20px" width="90px" $color={colors.blue500} />
+      <LoadingSkeleton height="20px" width="90px" $color={colors.blue900} />
+      <LoadingSkeleton height="20px" width="90px" $color={colors.blue900} />
+    </>
+  );
 
-  if (isLoading) {
-    return renderSkeleton();
-  }
+  const renderMenuElements = () =>
+    companies?.map((company) => (
+      <MenuElement company={company} key={company.id} />
+    ));
 
   return (
     <HeaderWrapper>
-      <img src={logo} />
+      <img src={logo} alt="Tractian logo" />
       <nav>
         <MenuWrapper>
-          {companies?.map((company) => (
-            <MenuElement company={company} key={company.id} />
-          ))}
+          {!isLoading || companies.length
+            ? renderMenuElements()
+            : renderSkeleton()}
         </MenuWrapper>
       </nav>
     </HeaderWrapper>

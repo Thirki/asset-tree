@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface IElementLinkProps {
   selected: boolean;
+  $isloading: boolean;
 }
 
 export const ElementLink = styled.a<IElementLinkProps>`
@@ -17,7 +18,7 @@ export const ElementLink = styled.a<IElementLinkProps>`
   text-align: center;
   font-weight: 600;
 
-  cursor: pointer;
+  cursor: ${(props) => (props.$isloading ? "wait" : "pointer")};
 
   background-color: ${(props) =>
     props.selected ? props.theme.colors.blue500 : props.theme.colors.blue900};

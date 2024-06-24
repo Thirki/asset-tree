@@ -11,7 +11,7 @@ interface IMenuElementProps {
 
 export const MenuElement: React.FC<IMenuElementProps> = ({ company }) => {
   const { id } = useParams();
-  const { setSelectedCompany } = useCompanyContext();
+  const { setSelectedCompany, isLoading } = useCompanyContext();
 
   const handleClickLink = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -22,7 +22,11 @@ export const MenuElement: React.FC<IMenuElementProps> = ({ company }) => {
 
   return (
     <li>
-      <ElementLink onClick={handleClickLink} selected={id === company.id}>
+      <ElementLink
+        onClick={handleClickLink}
+        $isloading={!!isLoading}
+        selected={id === company.id}
+      >
         <TreeIcon />
         {company.name} Unit
       </ElementLink>
