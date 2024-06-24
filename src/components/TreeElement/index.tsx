@@ -36,7 +36,6 @@ export const TreeElement = ({
 
   const handleSelectElement = () => {
     if (element.branchType === "component") {
-      console.log(element);
       setSelectedComponent(element);
     }
   };

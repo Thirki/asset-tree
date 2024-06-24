@@ -17,5 +17,6 @@ export const useGetCompanies = () => {
   return useQuery<ICompany[]>({
     queryKey: [USE_GET_COMPANIES_KEY],
     queryFn: fetchCompanies,
+    refetchOnWindowFocus: false,
   });
 };

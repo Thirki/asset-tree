@@ -20,6 +20,7 @@ export const useGetCompaniesLocations = (companyId = "", enabled = false) => {
   return useQuery<ILocation[]>({
     queryKey: [getCompanyLocationsKey(companyId)],
     queryFn: fetchCompaniesLocations,
+    refetchOnWindowFocus: false,
     enabled,
   });
 };

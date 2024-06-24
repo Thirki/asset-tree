@@ -23,6 +23,7 @@ export const useGetCompaniesAssets = (companyId = "", enabled = false) => {
   return useQuery<IAsset[]>({
     queryKey: [getCompanyAssetsKey(companyId)],
     queryFn: fetchCompaniesAssets,
+    refetchOnWindowFocus: false,
     enabled,
   });
 };
