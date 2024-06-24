@@ -1,8 +1,8 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useCompanyContext } from "../../context/hooks";
 import { ITreeComponents, TBranchType } from "../../hooks";
 import { ArrowIcon, AssetIcon, ComponentIcon, LocationIcon } from "../../icons";
-import { Wrapper, Text } from "./styles";
+import { Wrapper, Text, ExpandButton } from "./styles";
 
 interface ITreeElementProps {
   element: ITreeComponents;
@@ -23,6 +23,7 @@ export const TreeElement = ({
   parentLevel = 0,
 }: ITreeElementProps) => {
   const { treeComponents } = useCompanyContext();
+  const [isOpened, setIsOpened] = useState(false);
 
   const filteredComponents = useMemo(() => {
     return treeComponents?.filter(
@@ -31,20 +32,29 @@ export const TreeElement = ({
     );
   }, [treeComponents, element.id]);
 
+  const handleClickExpand = useCallback(() => {
+    setIsOpened((prevState) => !prevState);
+  }, []);
+
   return (
     <>
       <Wrapper $parentlevel={parentLevel}>
-        {element.children.length ? <ArrowIcon /> : ""}
+        {element.children.length > 0 && (
+          <ExpandButton onClick={handleClickExpand} $isopened={isOpened}>
+            {element.children.length > 0 && <ArrowIcon />}
+          </ExpandButton>
+        )}
         {renderIcon(element.branchType)}
         <Text>{element.name.toUpperCase()}</Text>
       </Wrapper>
-      {filteredComponents?.map((component) => (
-        <TreeElement
-          element={component}
-          key={component.id}
-          parentLevel={parentLevel + 1}
-        />
-      ))}
+      {isOpened &&
+        filteredComponents?.map((component) => (
+          <TreeElement
+            element={component}
+            key={component.id}
+            parentLevel={parentLevel + 1}
+          />
+        ))}
     </>
   );
 };
