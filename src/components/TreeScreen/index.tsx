@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { ITreeComponents, useCreateAssetsTree } from "../../hooks";
-import { Container, TreeWrapper } from "./styles";
+import { Container, LoadingWrapper, TreeWrapper } from "./styles";
 import { useCompanyContext } from "../../context/hooks";
 import { TreeElement } from "../TreeElement";
+import { LoadingSkeleton } from "../LoadingSkeleton";
+import { useTheme } from "styled-components";
 
 export const TreeScreen = () => {
-  const { setTreeComponents, locations, assets } = useCompanyContext();
+  const { colors } = useTheme();
+  const { setTreeComponents, locations, assets, isLoading } =
+    useCompanyContext();
   const [rootsElements, setRootElements] = useState<ITreeComponents[]>([]);
   const formattedTree = useCreateAssetsTree({
     locations,
@@ -21,13 +25,28 @@ export const TreeScreen = () => {
     setTreeComponents(Object.values(formattedTree));
   }, [formattedTree, setTreeComponents]);
 
-  return (
-    <Container>
+  const renderTree = () => {
+    return (
       <TreeWrapper>
         {rootsElements.map((element) => (
           <TreeElement key={element.id} element={element} />
         ))}
       </TreeWrapper>
-    </Container>
-  );
+    );
+  };
+
+  const renderLoading = () => {
+    return (
+      <LoadingWrapper>
+        <LoadingSkeleton height="20px" width="50%" $color={colors.gray150} />
+        <LoadingSkeleton height="20px" width="70%" $color={colors.gray200} />
+        <LoadingSkeleton height="20px" width="30%" $color={colors.gray150} />
+        <LoadingSkeleton height="20px" width="80%" $color={colors.gray200} />
+        <LoadingSkeleton height="20px" width="20%" $color={colors.gray150} />
+        <LoadingSkeleton height="20px" width="80%" $color={colors.gray200} />
+      </LoadingWrapper>
+    );
+  };
+
+  return <Container>{!isLoading ? renderTree() : renderLoading()}</Container>;
 };

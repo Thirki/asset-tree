@@ -16,3 +16,9 @@ export const TreeWrapper = styled.div`
   height: 80vh;
   overflow-y: auto;
 `;
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${(props) => props.theme.space.xxs};
+`;

@@ -44,6 +44,7 @@ export const CompanyContextProvider: React.FC<IMyContextProviderProps> = ({
 
   const changeRouteParams = useCallback(
     (company: ICompany) => {
+      setSelectedComponent(undefined);
       navigate(`/company/${company.id}`);
     },
     [navigate]
