@@ -1,11 +1,7 @@
 import { useMemo } from "react";
 import { IAsset, ILocation } from "../../api/hooks";
 
-export type TBranchType = "location" | "asset" | "component";
-
 export interface ITreeComponents extends IAsset {
-  branchType: TBranchType;
-  isOpened?: boolean;
   children: Array<ILocation | IAsset>;
 }
 

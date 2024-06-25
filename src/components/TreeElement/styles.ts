@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { TBranchType } from "../../hooks";
+import { TBranchType } from "../../api/hooks";
 
 interface IWrapperProps {
   $parentlevel: number;

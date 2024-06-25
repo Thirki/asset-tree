@@ -11,19 +11,19 @@ export const TreeScreen = () => {
   const { setTreeComponents, locations, assets, isLoading } =
     useCompanyContext();
   const [rootsElements, setRootElements] = useState<ITreeComponents[]>([]);
-  const formattedTree = useCreateAssetsTree({
+  const tree = useCreateAssetsTree({
     locations,
     assets,
   });
 
   useEffect(() => {
-    setRootElements(
-      Object.values(formattedTree).filter(
-        (branch) => !branch.parentId && !branch.locationId
-      )
+    const formattedTree = Object.values(tree) as ITreeComponents[];
+    const filteredTree = formattedTree.filter(
+      (branch) => !branch.parentId && !branch.locationId
     );
-    setTreeComponents(Object.values(formattedTree));
-  }, [formattedTree, setTreeComponents]);
+    setRootElements(filteredTree);
+    setTreeComponents(formattedTree);
+  }, [setTreeComponents, tree]);
 
   const renderTree = () => {
     return (

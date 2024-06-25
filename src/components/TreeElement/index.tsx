@@ -1,9 +1,10 @@
 import { useCallback, useMemo, useState } from "react";
 import { useCompanyContext } from "../../context/hooks";
-import { ITreeComponents, TBranchType } from "../../hooks";
+import { ITreeComponents } from "../../hooks";
 import { ArrowIcon, AssetIcon, ComponentIcon, LocationIcon } from "../../icons";
 import { Wrapper, Text, ExpandButton, IconWrapper } from "./styles";
 import { StatusIcon } from "../StatusIcon";
+import { TBranchType } from "../../api/hooks";
 
 interface ITreeElementProps {
   element: ITreeComponents;

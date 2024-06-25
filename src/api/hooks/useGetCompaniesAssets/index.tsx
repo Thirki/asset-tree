@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../../axiosConfig";
 
+export type TBranchType = "location" | "asset" | "component";
+
 export interface IAsset {
   id: string;
   locationId?: string | null;
@@ -10,6 +12,7 @@ export interface IAsset {
   sensorId?: string;
   sensorType?: string;
   status?: string;
+  branchType: TBranchType;
 }
 
 export const getCompanyAssetsKey = (companyId: string) =>

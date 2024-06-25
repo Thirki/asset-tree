@@ -6,6 +6,7 @@ export {
   getCompanyAssetsKey,
 } from "./useGetCompaniesAssets";
 export type { IAsset } from "./useGetCompaniesAssets";
+export type { TBranchType } from "./useGetCompaniesAssets";
 
 export {
   useGetCompaniesLocations,
